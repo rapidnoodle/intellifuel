@@ -1,6 +1,6 @@
 import requests
 key = "073d144a53594de0b5f63a9aaa0fd8f1"
-url = ('https://newsapi.org/v2/top-headlines?'
+url = ('https://newsapi.org/v2/everything?'
        'q=war&'
        'sortBy=relevancy&'
        'language=en&'
