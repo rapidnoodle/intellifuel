@@ -7,7 +7,7 @@ key = "073d144a53594de0b5f63a9aaa0fd8f1"
 # print(time.strftime("%d", ufTime))
 
 
-def retrieveByFactor(factor: str, shouldAnalyze: bool=True):
+def retrieveByFactor(factor: str, shouldAverage: bool=True):
        '''Searches the NewsAPI database for articles mentioning both oil and the provided keyword
        returns: by default, writes the # of articles to a file and returns both it and the average #, can be configured to return array of the results split by headlines, description, and content'''
        ufTime = time.gmtime( (time.time() - 86400) )
@@ -31,26 +31,34 @@ def retrieveByFactor(factor: str, shouldAnalyze: bool=True):
               content.append(articlesDict["articles"][i]["content"])
        
 
-       if(shouldAnalyze):
-              output = analyze(len(headlines), factor, time.strftime("%d", ufTime) )
+       if(shouldAverage):
+              output = average(len(headlines), factor, time.strftime("%d", ufTime) )
               return [output, len(headlines)]
        else:
               return [headlines, description, content]
        
-def analyze(articleCount: int, factor: str, currTime: str):
+def average(articleCount: int, factor: str, currTime: str):
        timeF = open("server/time.txt", "r")
        baseTime = timeF.read()
        print(baseTime)
        timeF.close()
        if(int(currTime) != int(baseTime)):
-              timeF = open("server\time.txt", "w")
+              timeF = open("server/time.txt", "w")
               timeF.write(currTime)
               timeF.close()
-              f = open(f"server\{factor}Averages.txt", "a")
-              f.write("articleCount" + "\n")
-              
+              f = open(f"server\{factor}Counts.txt", "a")
+              f.write(str(articleCount) + "\n")
+              f.close()
+
+       f = open(f"server\{factor}Counts.txt")
+       counts = f.read().replace('\n', ' ')
+       counts = counts.split()
+       counts = [int(x) for x in counts]
+       total = 0
+       for x in counts:
+              total = total + x
+       return (total / len(counts))
        
-       pass
        
 
-retrieveByFactor("war")
+#retrieveByFactor("war")
