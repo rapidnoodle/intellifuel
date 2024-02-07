@@ -1,6 +1,5 @@
 import requests
 import time
-import investpy.commodities as ipc
 
 # key = "073d144a53594de0b5f63a9aaa0fd8f1"
 # # ufTime = time.gmtime( (time.time() - 86400) )
@@ -62,10 +61,11 @@ import investpy.commodities as ipc
        
 
 # #retrieveByFactor("war")
-
 ufCurrTime = time.gmtime( (time.time() - 86400) ) 
 ufOldTime = time.gmtime( (time.time() - 31622400) )
-currTime = time.strftime("%d/%m/%Y", ufCurrTime)
-oldTime = time.strftime("%d/%m/%Y", ufOldTime)
-output = ipc.get_commodity_historical_data("Crude Oil WTI", oldTime, currTime, None, True)
-print(output)
+currTime = time.strftime("%Y-%m-%d", ufCurrTime)
+oldTime = time.strftime("%Y-%m-%d", ufOldTime)
+output = requests.get(f"http://api.scraperlink.com/investpy/?email=mascislarson@gmail.com&type=historical_data&product=commodities&from_date={oldTime}&to_date={currTime}&time_frame=Daily&name=Crude%20Oil%20WTI")
+results = output.json()["data"]
+print(results)
+
