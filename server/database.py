@@ -61,11 +61,16 @@ import time
        
 
 # #retrieveByFactor("war")
+
+#All this code retrieves the last year of WTI futures prices
+#Plot points on a graph and make a linear regression - to attempt to observe the general market trend
+#We can also make multiple regression models across different timespans - 6 months, 3 months, etc. in addition to 1 year
 ufCurrTime = time.gmtime( (time.time() - 86400) ) 
 ufOldTime = time.gmtime( (time.time() - 31622400) )
 currTime = time.strftime("%Y-%m-%d", ufCurrTime)
 oldTime = time.strftime("%Y-%m-%d", ufOldTime)
 output = requests.get(f"http://api.scraperlink.com/investpy/?email=mascislarson@gmail.com&type=historical_data&product=commodities&from_date={oldTime}&to_date={currTime}&time_frame=Daily&name=Crude%20Oil%20WTI")
-results = output.json()["data"]
+try: results = output.json()["data"]
+except: results = "L."
 print(results)
 
