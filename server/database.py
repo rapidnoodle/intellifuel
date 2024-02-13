@@ -46,10 +46,11 @@ def average(articleCount: int, factor: str, currTime: str):
               timeF.write(currTime)
               timeF.close()
               f = open(f"server\{factor}Counts.txt", "a")
-              f.write(str(articleCount) + " ")
+              f.write(str(articleCount))
               f.close()
 
        f = open(f"server\{factor}Counts.txt")
+       counts = f.read().replace("\n", " ")
        counts = counts.split()
        counts = [int(x) for x in counts]
        total = 0
