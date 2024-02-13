@@ -37,12 +37,12 @@ def retrieveByFactor(factor: str, shouldAverage: bool=True):
               return [headlines, description, content]
        
 def average(articleCount: int, factor: str, currTime: str):
-       timeF = open("server/time.txt", "r")
+       timeF = open("server\\time.txt", "r")
        baseTime = timeF.read()
        print(baseTime)
        timeF.close()
        if(int(currTime) != int(baseTime)):
-              timeF = open("server/time.txt", "w")
+              timeF = open("server\\time.txt", "w")
               timeF.write(currTime)
               timeF.close()
               f = open(f"server\{factor}Counts.txt", "a")
