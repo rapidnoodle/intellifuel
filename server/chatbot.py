@@ -3,15 +3,17 @@ import match
 from typing import Any, Callable, List, Tuple
 
 #Original code
-def newsOutlook(matches: List[str]):
+def newsOutlook(matches: str):
     factor = matches[0]
     output = db.retrieveByFactor(factor)
-    avg = output[1]
-    count = output[2]
-    resultsByFactor = {"war": ["drop in the price of oil due to the resulting instability and its affect on the supply of oil.", "", ""]}
+    avg = output[0]
+    count = output[1]
+    resultsByFactor = {"war": ["drop in the price of oil due to the resulting instability endangering supply and transportation.", 
+                               "", 
+                               ""]}
     end: str = ''
     if(count > avg):
-        end = "high. This is likely to lead to a"
+        end = f"more frequent than average. The heightened frequency of {factor} behind this rise in headlines is likely to lead to a {resultsByFactor[factor][0]}"
     elif(count == avg):
         pass
     elif(count < avg):
@@ -25,7 +27,7 @@ pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
     
 ]
 
-def search_pa_list(src: List[str]) -> List[str]:
+def search_pa_list(src: List[str]) -> str:
     """Takes source, finds matching pattern and calls corresponding action. If it finds
     a match but has no answers it returns ["No answers"]. If it finds no match it
     returns ["I don't understand"].
@@ -52,16 +54,17 @@ def query_loop() -> None:
     """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
     characters and exit gracefully.
     """
-    print("Welcome to the movie database!\n")
+    print("Intellifuel Chatbot: Internal Demo")
     while True:
         try:
             print()
-            query = input("Your query? ").replace("?", "").lower().split()
+            query = input("Query: ").replace("?", "").lower().split()
             answers = search_pa_list(query)
-            for ans in answers:
-                print(ans)
+            print(answers)
 
         except (KeyboardInterrupt, EOFError):
             break
 
     print("\nSo long!\n")
+
+query_loop()
