@@ -46,7 +46,6 @@ def average(articleCount: int, factor: str, currTime: str):
               timeF = open(f"server\\tracking\{factor}Time.txt", "r")
               baseTime = "-1"
        
-       print(baseTime)
        timeF.close()
        if(int(currTime) != int(baseTime)):
               timeF = open(f"server\\tracking\{factor}Time.txt", "w")
@@ -67,7 +66,7 @@ def average(articleCount: int, factor: str, currTime: str):
        
        
 
-retrieveByFactor("war")
+#retrieveByFactor("war")
 
 #All this code retrieves the last year of WTI futures prices
 #Plot points on a graph and make a linear regression - to attempt to observe the general market trend
