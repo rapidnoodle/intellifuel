@@ -35,19 +35,16 @@ def retrieveByFactor(factor: str, shouldAverage: bool=True):
               return [output, len(headlines)]
        else:
               return [headlines, description, content]
-# To Do: fix the way time is tracked (this only works if you check one factor, so make time factor-dependent)
+
 def average(articleCount: int, factor: str, currTime: str):
        try: 
               timeF = open(f"server\\tracking\{factor}Time.txt", "r")
               baseTime = timeF.read()
-       except: 
-              timeF = open(f"server\\tracking\{factor}Time.txt", "x")
               timeF.close()
-              timeF = open(f"server\\tracking\{factor}Time.txt", "r")
-              baseTime = "-1"
+       except: 
+              return -1
        
-       print(baseTime)
-       timeF.close()
+       
        if(int(currTime) != int(baseTime)):
               timeF = open(f"server\\tracking\{factor}Time.txt", "w")
               timeF.write(currTime)
@@ -67,7 +64,7 @@ def average(articleCount: int, factor: str, currTime: str):
        
        
 
-retrieveByFactor("war")
+#retrieveByFactor("war")
 
 #All this code retrieves the last year of WTI futures prices
 #Plot points on a graph and make a linear regression - to attempt to observe the general market trend
