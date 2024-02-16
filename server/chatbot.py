@@ -15,9 +15,10 @@ def newsOutlook(matches: str):
     count = output[1]
     
     end: str = ''
-    if(count > avg):
+    if(avg == -1): return "Error: Factor not tracked."
+    elif(count > avg):
         try: end = f"more frequent than average. This rise in headlines is likely to reflect a {resultsByFactor[factor][0]}"
-        except KeyError: end = "more frequent than average. However, we are unable to assess hat this means for the price of oil futures at this time."
+        except KeyError: end = "more frequent than average. However, we are unable to assess what this means for the price of oil futures at this time."
     elif(count == avg):
         end = f"as frequent as average. This average count of headlines is unlikely to represent a notable effect on the value of oil futures."
     elif(count < avg):
