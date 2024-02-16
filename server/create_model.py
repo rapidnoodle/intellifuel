@@ -8,8 +8,8 @@ data = pd.read_json("server/data.json")
 
 class Model:
     def __init__(self, test_size=0.2, start=0, end=len(data)):
-        x = np.array([ data.loc[i]["rowDateRaw"] for i in range(start, end) ])
-        y = np.array([ data.loc[i]["volumeRaw"] for i in range(start, end) ])    
+        x = np.array([ (data.loc[i]["rowDateRaw"] - 1676246400) / 86400 for i in range(start, end) ])
+        y = np.array([ data.loc[i]["last_close"] for i in range(start, end) ])    
         xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size = test_size)
         xtrain = xtrain.reshape(-1,1)
         xtest = xtest.reshape(-1,1)
@@ -51,9 +51,19 @@ class Model:
         plt.scatter(self.xtest, self.ytest, c="blue", label="Testing Data")
         plt.scatter(self.xtest, self.predict, c="red", label="Predictions")
         plt.xlabel("Raw Date Value")
-        plt.ylabel("Volume")
-        plt.title("Volume by Date")
+        plt.ylabel("Last Close")
+        plt.title("Last Close by Date")
         plt.plot(self.x, self.coef*self.x + self.intercept, c="r", label="Line of Best Fit")
         plt.legend()
         plt.show()
+
+    @staticmethod
+    def generate(number_of_models, test_size=0.2):
+        models = []
+        increment = int(len(data) / number_of_models)
+        for i in range(number_of_models):
+            start = increment * i
+            end = start + increment
+            models.append(Model(test_size=test_size, start=start, end=end))
+        return models
 
