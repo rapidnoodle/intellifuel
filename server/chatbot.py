@@ -16,11 +16,13 @@ def newsOutlook(matches: str):
     
     end: str = ''
     if(count > avg):
-        end = f"more frequent than average. This rise in headlines is likely to reflect a {resultsByFactor[factor][0]}"
+        try: end = f"more frequent than average. This rise in headlines is likely to reflect a {resultsByFactor[factor][0]}"
+        except KeyError: end = "more frequent than average. However, we are unable to assess hat this means for the price of oil futures at this time."
     elif(count == avg):
         end = f"as frequent as average. This average count of headlines is unlikely to represent a notable effect on the value of oil futures."
     elif(count < avg):
-        end = f"less frequent than average. This rise in headlines is likely to reflect a {resultsByFactor[factor][1]}"
+        try: end = f"less frequent than average. This rise in headlines is likely to reflect a {resultsByFactor[factor][1]}"
+        except KeyError: end = "less frequent than average. However, we are unable to assess hat this means for the price of oil futures at this time."
     return f"News headlines discussing {factor} and oil together are {end}"
     
 
