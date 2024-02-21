@@ -64,23 +64,17 @@ class Model:
         plt.show()
 
     @staticmethod
-    def generate(number_of_models, test_size=0.2):
-        models = []
-        increment = int(len(data) / number_of_models)
-        for i in range(number_of_models):
-            start = increment * i
-            end = start + increment
-            models.append(Model(test_size=test_size, start=start, end=end))
-        return models
+    def to_sentence(coefficient, confidence, time_period):
+        trend = "an upward" if coefficient > 0 else "a downward"
+        return f"Based on our predictions from data in the past {time_period}, there has been {trend} trend with a slope of around {coefficient} and a confidence level of {confidence} percent."
     
     @staticmethod
-    def analyze(percent_of_year, time_period):
+    def analyze(percent_of_year):
         start = len(data) - int(len(data) * percent_of_year)
         model = Model(start=start)
         print(model)
         model.graph()
-        trend = "an upward" if model.get_coef() > 0 else "a downward"
         confidence = int(model.get_r_squared() * 10000) / 100
-        return f"Based on our predictions from data in the past {time_period}, there has been {trend} trend with a slope of around {model.get_coef()} and a confidence level of {confidence} percent."
+        return model.get_coef(), confidence
 
 
