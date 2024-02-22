@@ -72,8 +72,6 @@ class Model:
     def analyze(percent_of_year):
         start = len(data) - int(len(data) * percent_of_year)
         model = Model(start=start)
-        print(model)
-        model.graph()
         confidence = int(model.get_r_squared() * 10000) / 100
         return model.get_coef(), confidence
 
