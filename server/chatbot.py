@@ -36,15 +36,15 @@ def newsOutlook(matches: str):
     elif(count < avg):
         try: end = f"less frequent than average. This drop in headlines may reflect a {resultsByFactor[factor][1]}"
         except KeyError: end = "less frequent than average. However, we are unable to assess what this means for the price of oil futures at this time."
-    return f"Response: News headlines discussing {factor} and oil together are {end}"
+    return f"News headlines discussing {factor} and oil together are {end}"
 
 def trendOutlook(matches: str):
     try: coefficient, confidence = Model.analyze(timeByPhrase[matches[0]])
-    except KeyError: return "Response: Input time period not recognized. Valid times are: week, two weeks, month, two months, three months, quarter of a year, quarter year, half of a year, half year, year"
+    except KeyError: return "Input time period not recognized. Valid times are: week, two weeks, month, two months, three months, quarter of a year, quarter year, half of a year, half year, year"
     return Model.to_sentence(coefficient, confidence, matches[0])
 
 def factors(matches:str):
-    return "Response: We currently allow you to look at how natural disasters, nuclear energy, OPEC, regulation, renewable energy, and war are affecting the value of oil futures."
+    return "We currently allow you to look at how natural disasters, nuclear energy, OPEC, regulation, renewable energy, and war are affecting the value of oil futures."
     
 
 #Code I just straight up stole from a3 (which I suppose I also wrote much of)
@@ -81,19 +81,19 @@ def search_pa_list(src: List[str]) -> str:
             output = tuple[1](keywords)
             if output != []: return output
             else: return "No answers"
-    return "Response: Query not understood."
+    return "Query not understood."
 
 def query_loop() -> None:
     """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
     characters and exit gracefully.
     """
-    print("Intellifuel Chatbot: Internal Demo")
+    print("Intellifuel - WTI Crude Analysis Chatbot: Internal Demo")
     while True:
         try:
             print()
             query = input("Query: ").replace("?", "").lower().split()
             answers = search_pa_list(query)
-            print(answers)
+            print(f"Response: {answers}")
 
         except (KeyboardInterrupt, EOFError):
             break
