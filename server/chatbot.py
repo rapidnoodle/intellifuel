@@ -45,6 +45,9 @@ def trendOutlook(matches: str):
 
 def factors(matches:str):
     return "We currently allow you to look at how natural disasters, nuclear energy, OPEC, regulation, renewable energy, and war are affecting the value of oil futures."
+
+def help(matches:str):
+    return "Try asking 'How is ____ affecting the value of oil futures? You can ask about natural disasters, nuclear energy, OPEC, regulation, renewable energy, and war.\n" + "You can also ask 'What is the trend in the price of oil futures over the last _____?' You can ask about time periods up to a year."
     
 
 #Code I just straight up stole from a3 (which I suppose I also wrote much of)
@@ -56,7 +59,8 @@ pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
     (str.split("how is % affecting the price of oil futures"), newsOutlook),
     (str.split("how are % affecting the price of oil futures"), newsOutlook),
     (str.split("what _ % the price of oil futures"), factors),
-    (str.split("what is the trend in the price of oil futures over the last %"), trendOutlook)
+    (str.split("what is the trend in the price of oil futures over the last %"), trendOutlook),
+    (["help"], help)
     
 ]
 
@@ -88,6 +92,7 @@ def query_loop() -> None:
     characters and exit gracefully.
     """
     print("Intellifuel - WTI Crude Analysis Chatbot: Internal Demo")
+    print("Tip: type 'help' for help")
     while True:
         try:
             print()
