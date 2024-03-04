@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+import Header from './components/header';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [data, setdata] = useState({
+  const [data, setData] = useState({
     name: "",
     age: 0,
     date: "",
@@ -11,21 +12,22 @@ function App() {
   });
 
   useEffect(() => {
-    fetch("/data").then((res) =>
-      res.json().then((data) => {
-        setdata({
-          name: data.Name,
-          age: data.Age,
-          date: data.Date,
-          programming: data.programming,
-        });
-      })
-    );
+    // fetch("/data").then((res) =>
+    //   res.json().then((data) => {
+    //     setData({
+    //       name: data.Name,
+    //       age: data.Age,
+    //       date: data.Date,
+    //       programming: data.programming,
+    //     });
+    //   })
+    // );
   }, []);
 
   return (
     <div className="App">
-      <header className="App-header">
+      <Header currentPage="our team" />
+      <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>React and Flask</h1>
         <p>{data.name}</p>
@@ -40,7 +42,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </div>
     </div>
   );
 }
