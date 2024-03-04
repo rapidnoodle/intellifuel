@@ -1,5 +1,6 @@
 import database as db
 import match
+from create_model import Model
 from typing import Any, Callable, List, Tuple
 
 #Original code
@@ -17,6 +18,8 @@ resultsByFactor = {"war": ["drop in the value of oil futures due to the resultin
                                 "stabilization in the value of oil futures, as there are not notable changes in regulation that would cause the price to swing."] 
                                 }
 
+timeByPhrase = {"week": 1/48, "two weeks": 1/24, "month": 1/12, "two months": 1/6, "three months": 1/4, "quarter of a year": 1/4, "quarter year": 1/4, "half of a year": 1/2, "half year": 1/2, "year": 1}
+
 def newsOutlook(matches: str):
     factor = matches[0]
     output = db.retrieveByFactor(factor)
@@ -26,20 +29,38 @@ def newsOutlook(matches: str):
     end: str = ''
     if(avg == -1): return "Error: Factor not tracked."
     elif(count > avg):
-        try: end = f"more frequent than average. This rise in headlines is likely to reflect a {resultsByFactor[factor][0]}"
+        try: end = f"more frequent than average. This rise in headlines may reflect a {resultsByFactor[factor][0]}"
         except KeyError: end = "more frequent than average. However, we are unable to assess what this means for the price of oil futures at this time."
     elif(count == avg):
         end = f"as frequent as average. This average count of headlines is unlikely to represent a notable effect on the value of oil futures."
     elif(count < avg):
-        try: end = f"less frequent than average. This rise in headlines is likely to reflect a {resultsByFactor[factor][1]}"
-        except KeyError: end = "less frequent than average. However, we are unable to assess hat this means for the price of oil futures at this time."
-    return f"Response: News headlines discussing {factor} and oil together are {end}"
+        try: end = f"less frequent than average. This drop in headlines may reflect a {resultsByFactor[factor][1]}"
+        except KeyError: end = "less frequent than average. However, we are unable to assess what this means for the price of oil futures at this time."
+    return f"News headlines discussing {factor} and oil together are {end}"
+
+def trendOutlook(matches: str):
+    try: coefficient, confidence = Model.analyze(timeByPhrase[matches[0]])
+    except KeyError: return "Input time period not recognized. Valid times are: week, two weeks, month, two months, three months, quarter of a year, quarter year, half of a year, half year, year"
+    return Model.to_sentence(coefficient, confidence, matches[0])
+
+def factors(matches:str):
+    return "We currently allow you to look at how natural disasters, nuclear energy, OPEC, regulation, renewable energy, and war are affecting the value of oil futures."
+
+def help(matches:str):
+    return "Try asking 'How is ____ affecting the value of oil futures? You can ask about natural disasters, nuclear energy, OPEC, regulation, renewable energy, and war.\n" + "You can also ask 'What is the trend in the price of oil futures over the last _____?' You can ask about time periods up to a year."
     
 
 #Code I just straight up stole from a3 (which I suppose I also wrote much of)
 pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
-    (str.split("how is % affecting the price of oil"), newsOutlook),
-    (str.split("how are % affecting the price of oil"), newsOutlook)
+    (str.split("how is % affecting the value of oil futures"), newsOutlook),
+    (str.split("how are % affecting the value of oil futures"), newsOutlook),
+    (str.split("what _ % the value of oil futures"), factors),
+    (str.split("what is the trend in the value of oil futures over the last %"), trendOutlook),
+    (str.split("how is % affecting the price of oil futures"), newsOutlook),
+    (str.split("how are % affecting the price of oil futures"), newsOutlook),
+    (str.split("what _ % the price of oil futures"), factors),
+    (str.split("what is the trend in the price of oil futures over the last %"), trendOutlook),
+    (["help"], help)
     
 ]
 
@@ -64,19 +85,20 @@ def search_pa_list(src: List[str]) -> str:
             output = tuple[1](keywords)
             if output != []: return output
             else: return "No answers"
-    return "I don't understand"
+    return "Query not understood."
 
 def query_loop() -> None:
     """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
     characters and exit gracefully.
     """
-    print("Intellifuel Chatbot: Internal Demo")
+    print("Intellifuel - WTI Crude Analysis Chatbot: Internal Demo")
+    print("Tip: type 'help' for help")
     while True:
         try:
             print()
             query = input("Query: ").replace("?", "").lower().split()
             answers = search_pa_list(query)
-            print(answers)
+            print(f"Response: {answers}")
 
         except (KeyboardInterrupt, EOFError):
             break

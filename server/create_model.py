@@ -66,14 +66,12 @@ class Model:
     @staticmethod
     def to_sentence(coefficient, confidence, time_period):
         trend = "an upward" if coefficient > 0 else "a downward"
-        return f"Based on our predictions from data in the past {time_period}, there has been {trend} trend with a slope of around {coefficient} and a confidence level of {confidence} percent."
+        return f"In the past {time_period}, there has been {trend} trend with a rate of change around {coefficient} per day, which we have determined with a confidence level of {confidence}%."
     
     @staticmethod
     def analyze(percent_of_year):
         start = len(data) - int(len(data) * percent_of_year)
         model = Model(start=start)
-        print(model)
-        model.graph()
         confidence = int(model.get_r_squared() * 10000) / 100
         return model.get_coef(), confidence
 
