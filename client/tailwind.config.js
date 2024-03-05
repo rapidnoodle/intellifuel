@@ -10,10 +10,10 @@ module.exports = {
         'light-primary': "#F7F7F7",
       },
       backgroundImage: {
-        'hero': "url('/assets/fire-oil-rig.jpg')",
+        'hero': "url('/src/assets/fire-oil-rig.jpg')",
         'content': "url('https://picsum.photos/400')",
-        'cme': "url('/assets/cme-group-logo-transparent.png')",
-        'lane': "url('/assets/lane-tech-logo.png')",
+        'cme': "url('/src/assets/cme-group-logo-transparent.png')",
+        'lane': "url('/src/assets/lane-tech-logo.png')",
       }
     },
   },
