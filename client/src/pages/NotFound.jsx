@@ -11,5 +11,5 @@ export default function NotFound() {
       <Link to="/">Go Back to Home Page</Link>
       <Footer />
     </>
-  )
+  );
 }

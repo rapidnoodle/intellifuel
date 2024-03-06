@@ -10,5 +10,5 @@ export default function Contacts() {
       <p>contacts page</p>
       <Footer />
     </>
-  )
+  );
 }
