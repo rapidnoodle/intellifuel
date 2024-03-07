@@ -9,6 +9,7 @@ import Partners from './pages/Partners';
 import Blog from './pages/Blog';
 import Contacts from './pages/Contacts';
 import NotFound from './pages/NotFound';
+import Chat from './pages/Chat';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: '/contacts',
     element: <Contacts />,
+  },
+  {
+    path: '/chat',
+    element: <Chat />,
   },
 ]);
 

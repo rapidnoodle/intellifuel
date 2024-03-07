@@ -1,8 +1,12 @@
+import { Link } from "react-router-dom";
+
 export default function Banner({ title, hasButton }) {
   const button = (
-    <button className="block mx-auto px-10 py-4 text-lg bg-primary rounded-lg cursor-pointer transition-colors hover:bg-dark-primary sm:px-20">
-      Get Started
-    </button>
+    <Link to="/chat">
+      <button className="block mx-auto px-10 py-4 text-lg bg-primary rounded-lg cursor-pointer transition-colors hover:bg-dark-primary sm:px-20">
+        Get Started
+      </button>
+    </Link>
   );
   return (
     <div className="bg-hero bg-cover bg-no-repeat bg-center">
