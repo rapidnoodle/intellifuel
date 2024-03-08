@@ -7,13 +7,51 @@ import Footer from "../components/footer";
 export default function Chat() {
   const [messages, setMessages] = useState([
     {
-      sender: "Bot",
-      message: "Hello! My name is Iris, the latest version of the IntelliFuel chat bot! How may I assist you today?",
+      isBot: true,
+      message: "Hello! My name is IRIS, the latest version of the IntelliFuel chat bot! How may I assist you today?",
     },
   ]);
 
-  const onSubmit = (data) => {
-    console.log("Submitted", data);
+  const onSubmit = (req) => {
+    const userMessage = {
+      isBot: false,
+      message: req.chatbox,
+    };
+
+    setMessages([
+      ...messages,
+      userMessage,
+    ]); 
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: req.chatbox })
+    };
+    fetch("/iris", requestOptions)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setMessages([
+          ...messages,
+          userMessage,
+          {
+            isBot: true,
+            message: data.message,
+          },
+        ]);
+      })
+      .catch((error) => {
+        setMessages([
+          ...messages,
+          userMessage,
+          {
+            isBot: true,
+            message: "Apologies, my neural networks seem to be malfunctioning! Please try again later. Error: " + error.message,
+          },
+        ]);
+      });
   };
 
   const form = useForm();
@@ -24,13 +62,17 @@ export default function Chat() {
     <>
       <Header />
       <Banner title="IntelliFuel Chat Bot" />
+      {messages.map((message) => (
+        <div>{message.message}</div>
+      ))}
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <label htmlFor="username">Username</label>
+        <label htmlFor="chatbox">Chatbox</label>
         <input
           type="text"
-          id="username"
-          name="username"
-          {...register("username", {
+          id="chatbox"
+          name="chatbox"
+          placeholder="Ask IRIS..."
+          {...register("chatbox", {
               required: {
                 value: true,
                 message: "Required!",
@@ -40,8 +82,8 @@ export default function Chat() {
               },
           })}
         />
-        <p>{errors.username?.message}</p>
-        <button>Submit</button>
+        <p>{errors.chatbox?.message}</p>
+        <button>Send</button>
       </form>
       <Footer />
     </>
