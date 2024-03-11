@@ -1,5 +1,6 @@
 import requests
 import time
+import os
 
 key = "073d144a53594de0b5f63a9aaa0fd8f1"
 # ufTime = time.gmtime( (time.time() - 86400) )
@@ -38,7 +39,7 @@ def retrieveByFactor(factor: str, shouldAverage: bool=True):
 
 def average(articleCount: int, factor: str, currTime: str):
        try: 
-              timeF = open(f"server/tracking/{factor}Time.txt", "r")
+              timeF = open(os.path.join("server", "tracking", f"{factor}Time.txt"), "r")
               baseTime = timeF.read()
               timeF.close()
        except: 
@@ -46,14 +47,14 @@ def average(articleCount: int, factor: str, currTime: str):
        
        
        if(int(currTime) != int(baseTime)):
-              timeF = open(f"server/tracking/{factor}Time.txt", "w")
+              timeF = open(os.path.join("server", "tracking", f"{factor}Time.txt"), "w")
               timeF.write(currTime)
               timeF.close()
-              f = open(f"server/tracking/{factor}Counts.txt", "a")
+              f = open(os.path.join("server", "tracking", f"{factor}Counts.txt"), "a")
               f.write(str(articleCount) + " ")
               f.close()
 
-       f = open(f"server/tracking/{factor}Counts.txt")
+       f = open(os.path.join("server", "tracking", f"{factor}Counts.txt"))
        counts = f.read()
        counts = counts.split()
        counts = [int(x) for x in counts]
