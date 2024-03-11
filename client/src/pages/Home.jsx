@@ -12,16 +12,17 @@ export default function Home() {
       <TitleText
         title="Our Mission"
         message="Provide a chatbot to help traders make decisions regarding the sale or purchase of oil
-          by taking into account external real-world factors that affect the price of oil"
-      />
-      <TextImageSplit
-        title="About Oil"
-        message="Keep up with the latest oil updates"
-        buttonContent="Learn More"
+          by taking into account external real-world factors that affect the price of oil futures"
       />
       <TextImageSplit
         title="Our Team"
-        message="Read about the members behind the screen, and learn what drew us to this project."
+        message="Learn about the members behind the screen and what drew us to this project."
+        buttonContent="Learn More"
+        buttonLink="/about"
+      />
+      <TextImageSplit
+        title="Why Oil?"
+        message="Read this article about the reason why IntelliFuel tracks oil futures rather than other products."
         buttonContent="Read Now"
         flipped
       />

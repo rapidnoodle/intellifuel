@@ -30,7 +30,8 @@ export default function Contacts() {
         </div>
         <div className="text-lg font-thin">
           <h4>Partnerships</h4>
-          <p className="text-gray-400 underline"><a href="mailto:email@example.com">email@example.com</a></p>
+          <p className="text-gray-400 underline"><a href="mailto:GlobalSalesDesk@cmegroup.com">GlobalSalesDesk@cmegroup.com</a></p>
+          <p className="text-gray-400 underline"><a href="mailto:admin@lanetech.org">admin@lanetech.org</a></p>
         </div>
       </div>
       <Footer />

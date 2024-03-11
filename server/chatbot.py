@@ -84,8 +84,10 @@ def search_pa_list(src: List[str]) -> str:
         if keywords != None:
             output = tuple[1](keywords)
             if output != []: return output
-            else: return "No answers"
-    return "Query not understood."
+            else: return "There are no answers that are available for your request!"
+    return """
+        I'm sorry, I do not understand your question. I'm is still in development and require specific formats in order to fulfil your requests. Please try again!
+    """.strip()
 
 def query_loop() -> None:
     """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
@@ -105,4 +107,8 @@ def query_loop() -> None:
 
     print("\nProgram Exited\n")
 
-query_loop()
+
+def ask_iris(request):
+    return search_pa_list(request.strip().replace("?", "").lower().split())
+
+# query_loop()

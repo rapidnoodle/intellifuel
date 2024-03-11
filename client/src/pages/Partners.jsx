@@ -15,7 +15,7 @@ export default function Partners() {
       </div>
       <div class="max-w-screen-md w-11/12 mx-auto my-16 font-thin">
         <h2 class="text-xl font-medium mb-4">Become a Partner</h2>
-        <p>If you would like to partner with us, fill out the form below and one of our staff members will get back to you. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>If you would like to partner with us, fill out the form below and one of our staff members will get back to you.</p>
         <form action="" class="mx-auto py-5 sm:py-10">
           <div class="flex justify-between gap-5 mb-3 flex-col sm:flex-row">
             <div class="flex-1">
