@@ -15,29 +15,33 @@ export default function About() {
         <h2 className="text-3xl font-medium text-center mb-5">
           What We've Achieved
         </h2>
-        <div className="flex justify-between items-start gap-5 font-thin [&>ul]:list-inside [&>ul]:flex-1 [&>ul]:list-disc">
+        <div className="flex justify-between items-start gap-5 font-thin [&>ul]:list-inside [&>ul]:leading-loose [&>ul]:flex-1 [&>ul]:list-disc">
           <ul>
-            <li>Just put stuff that we have achieved</li>
+            <li><strong>Innovative Technology Development:</strong> Successfully designed and developed a proprietary technology for predicting oil futures prices using advanced algorithms and data analytics.</li>
+            <li><strong>Positive Feedback from Experts:</strong> Garnered positive feedback and endorsements from industry experts and professionals, validating the credibility and effectiveness of our predictive model.</li>
+            <li><strong>Expansion and Growth:</strong> Experienced rapid growth and expansion, scaling our operations to meet a possible increase in demand for our predictive analytics services in the oil futures market.</li>
           </ul>
           <ul>
-            <li>Make sure we have two columns no matter how many accomplishments we have</li>
+            <li><strong>Accuracy and Reliability:</strong> Achieved high levels of accuracy and reliability in forecasting oil futures prices, validated through extensive backtesting and real-time market data analysis.</li>
+            <li><strong>Partnerships and Collaborations:</strong> Formed strategic partnerships and collaborations with CME Group to further enhance the capabilities and reach of our technology.</li>
+            <li><strong>Educational Outreach:</strong> Engaged in educational outreach activities to inspire other aspiring young entrepreneurs and technologists, sharing our journey and insights into developing innovative solutions in the technology and finance sectors.</li>
           </ul>
         </div>
       </div>
       <TitleText title="Meet the Team" />
       <div class="max-w-screen-lg w-11/12 mx-auto mb-16 [&>div]:gap-10 [&>div]:lg:gap-20">
         <div class="flex justify-center items-center mx-auto flex-col sm:flex-row mb-10 sm:mb-0 [&>div]:max-w-64 [&>div]:sm:max-w-40 [&>div]:lg:max-w-60">
-          <div class="w-full aspect-square bg-hero bg-cover bg-no-repeat bg-center rounded-full" />
-          <div class="w-full aspect-square bg-hero bg-cover bg-no-repeat bg-center rounded-full" />
+          <div class="w-full aspect-square bg-[url('/src/assets/michael.png')] bg-cover bg-no-repeat bg-center rounded-full" />
+          <div class="w-full aspect-square bg-[url('/src/assets/lillie.jpg')] bg-cover bg-no-repeat bg-center rounded-full" />
         </div>
         <div class="flex justify-center items-center mx-auto flex-col sm:flex-row mb-10 sm:mb-0 [&>div]:max-w-64 [&>div]:sm:max-w-40 [&>div]:lg:max-w-60">
-          <div class="w-full aspect-square bg-hero bg-cover bg-no-repeat bg-center rounded-full" />
-          <div class="w-full aspect-square bg-hero bg-cover bg-no-repeat bg-center rounded-full" />
-          <div class="w-full aspect-square bg-hero bg-cover bg-no-repeat bg-center rounded-full" />
+          <div class="w-full aspect-square bg-[url('/src/assets/joaquin.jpg')] bg-cover bg-no-repeat bg-center rounded-full" />
+          <div class="w-full aspect-square bg-[url('/src/assets/ari.jpg')] bg-cover bg-no-repeat bg-left rounded-full" />
+          <div class="w-full aspect-square bg-[url('/src/assets/nicole.png')] bg-cover bg-no-repeat bg-center rounded-full" />
         </div>
         <div class="flex justify-center items-center mx-auto flex-col sm:flex-row [&>div]:max-w-64 [&>div]:sm:max-w-40 [&>div]:lg:max-w-60">
-          <div class="w-full aspect-square bg-hero bg-cover bg-no-repeat bg-center rounded-full" />
-          <div class="w-full aspect-square bg-hero bg-cover bg-no-repeat bg-center rounded-full" />
+          <div class="w-full aspect-square bg-[url('/src/assets/mascis.png')] bg-cover bg-no-repeat bg-center rounded-full" />
+          <div class="w-full aspect-square bg-[url('/src/assets/abril.jpg')] bg-cover bg-no-repeat bg-center rounded-full" />
         </div>
       </div>
       <Footer />
