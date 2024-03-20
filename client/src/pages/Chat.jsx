@@ -37,7 +37,7 @@ export default function Chat() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: req.chatbox })
+      body: JSON.stringify({ message: req.chatbox }),
     };
     fetch("/iris", requestOptions)
       .then((res) => {

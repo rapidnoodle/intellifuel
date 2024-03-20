@@ -2,45 +2,30 @@ import { useForm } from "react-hook-form";
 
 export default function CustomForm({ formName, hasBackground }) {
   const form = useForm();
-  const { register, handleSubmit } = form;
+  const { register, handleSubmit, reset } = form;
 
-  // const onSubmit = (req) => {
-  //   const userMessage = {
-  //     isBot: false,
-  //     message: req.chatbox,
-  //   };
+  const onSubmit = (req) => {
+    const formData = {
+      firstName: req.fname,
+      lastName: req.lname,
+      email: req.email,
+      message: req.message
+    };
 
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ message: req.chatbox })
-  //   };
-  //   fetch("/iris", requestOptions)
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       setMessages([
-  //         ...messages,
-  //         userMessage,
-  //         {
-  //           isBot: true,
-  //           message: data.message,
-  //         },
-  //       ]);
-  //     })
-  //     .catch((error) => {
-  //       setMessages([
-  //         ...messages,
-  //         userMessage,
-  //         {
-  //           isBot: true,
-  //           message: "Apologies, my neural networks seem to be malfunctioning! Please try again later. Error: " + error.message,
-  //         },
-  //       ]);
-  //     })
-  //     .finally(() => setLoading(false));
-  // };
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    };
+    // fetch("/form", requestOptions)
+    //   .then((_res) => {
+    //     // redirect to thank you page
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.message);
+    //     reset();
+    //   });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className={"mx-auto mb-16 " + (hasBackground ? "bg-light-primary rounded-lg max-w-xl p-5 sm:p-10" : "max-w-screen-md")}>
@@ -83,7 +68,12 @@ export default function CustomForm({ formName, hasBackground }) {
         {...register("message", { required: { value: true } })}
         className="w-full p-2 mb-3 rounded-md border border-black"
       />
-      <button className="block mx-auto px-10 py-4 font-medium text-white text-lg bg-primary rounded-lg cursor-pointer transition-colors hover:bg-dark-primary" type="submit" value="Send" />
+      <button
+        className="block mx-auto px-10 py-4 font-medium text-white text-lg bg-primary rounded-lg cursor-pointer transition-colors hover:bg-dark-primary"
+        type="submit"
+      >
+        Send
+      </button>
     </form>
   );
 }
