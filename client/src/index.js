@@ -4,12 +4,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import Home from './pages/Home';
+import Chat from './pages/Chat';
 import About from './pages/About';
-import Partners from './pages/Partners';
 import Blog from './pages/Blog';
 import Contacts from './pages/Contacts';
 import NotFound from './pages/NotFound';
-import Chat from './pages/Chat';
 
 const router = createBrowserRouter([
   {
@@ -18,12 +17,12 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   {
-    path: '/about',
-    element: <About />,
+    path: '/chat',
+    element: <Chat />,
   },
   {
-    path: '/partners',
-    element: <Partners />,
+    path: '/about',
+    element: <About />,
   },
   {
     path: '/blog',
