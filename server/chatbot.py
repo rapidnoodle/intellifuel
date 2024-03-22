@@ -27,7 +27,7 @@ def newsOutlook(matches: str):
     count = output[1]
     
     end: str = ''
-    if(avg == -1): return "Error: Factor not tracked."
+    if(avg == -1): return "Oops! IntelliFuel is currently not tracking your specified factor. Please try some other ones including war, natural disasters, etc."
     elif(count > avg):
         try: end = f"more frequent than average. This rise in headlines may reflect a {resultsByFactor[factor][0]}"
         except KeyError: end = "more frequent than average. However, we are unable to assess what this means for the price of oil futures at this time."
@@ -86,7 +86,7 @@ def search_pa_list(src: List[str]) -> str:
             if output != []: return output
             else: return "There are no answers that are available for your request!"
     return """
-        I'm sorry, I do not understand your question. I'm is still in development and require specific formats in order to fulfil your requests. Please try again!
+        I'm sorry, I do not understand your question. I'm is still in development and require specific formats in order to fulfill your requests. Please try again!
     """.strip()
 
 def query_loop() -> None:
