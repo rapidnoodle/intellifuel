@@ -8,6 +8,7 @@ import Chat from './pages/Chat';
 import About from './pages/About';
 import Blog from './pages/Blog';
 import Contacts from './pages/Contacts';
+import ThankYou from './pages/ThankYou';
 import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter([
@@ -28,13 +29,17 @@ const router = createBrowserRouter([
     path: '/blog',
     element: <Blog />,
   },
+  // {
+  //   path: '/blog/:post',
+  //   element: <BlockPost />,
+  // },
   {
     path: '/contacts',
     element: <Contacts />,
   },
   {
-    path: '/chat',
-    element: <Chat />,
+    path: '/thank-you',
+    element: <ThankYou />,
   },
 ]);
 

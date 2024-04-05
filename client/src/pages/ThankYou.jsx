@@ -4,13 +4,13 @@ import TitleText from "../components/titleText";
 import Footer from "../components/footer";
 import { Link } from "react-router-dom";
 
-export default function NotFound() {
+export default function ThankYou() {
   return (
     <>
       <Header />
-      <Banner title="Error 404: Not Found" />
+      <Banner title="Thank You!" />
       <TitleText
-        title="Oops! It looks like you got lost because this page does not exist!"
+        title="We deeply appreciate your interest in IntelliFuel, and we will get back to you as soon as possible!"
         message={<Link to="/">Go Back to Home Page</Link>}
       />
       <Footer />

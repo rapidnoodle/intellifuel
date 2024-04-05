@@ -12,20 +12,20 @@ export default function Blog() {
         title="About Oil"
         message="Keep up with the latest oil updates"
         date="2/2/24"
-        imgae="bg-hero"
+        image="bg-hero"
       />
       <PostPreview
         title="About Oil"
         message="Keep up with the latest oil updates"
         date="2/2/24"
-        imgae="bg-hero"
+        image="bg-hero"
         flipped
       />
       <PostPreview
         title="About Oil"
         message="Keep up with the latest oil updates"
         date="2/2/24"
-        imgae="bg-hero"
+        image="bg-hero"
       />
       <Footer />
     </>
